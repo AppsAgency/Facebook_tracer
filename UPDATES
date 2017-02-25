@@ -1,0 +1,52 @@
+Context context = getApplicationContext();
+
+        TextView FaceBookURL = (TextView) findViewById(R.id.FBURL);
+        String SFBURL = (String) FaceBookURL.getText();
+        SFBURL.replaceFirst("https://", "");
+        SFBURL.replaceFirst("www.facebook.com/", "");
+
+        Toast Mass = Toast.makeText(context, SFBURL, Toast.LENGTH_SHORT);
+        Mass.show();
+
+
+        String StringURL = "http://graph.tips/profile_id.php?username=" + SFBURL;
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+
+
+
+        StringRequest ClientRequest = new StringRequest(Request.Method.GET,StringURL,new Response.Listener<String>(){
+            @Override
+            public void onResponse(String response) {
+                // Display the first 500 characters of the response string.
+               String Resp =  "Response is: "+ response.substring(0,500);
+                Context context1 = getApplicationContext();
+                Toast RepoMass = Toast.makeText(context1, Resp, Toast.LENGTH_SHORT);
+                RepoMass.show();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Context context1 = getApplicationContext();
+                Toast ErrorMass = Toast.makeText(context1, "an error has occuered", Toast.LENGTH_SHORT);
+                ErrorMass.show();
+            }
+
+        });
+
+        queue.add(ClientRequest);
+
+
+
+
+
+then 
+
+add this 
+
+ compile 'com.android.volley:volley:1.0.0'
+ 
+ after this 
+     compile 'com.android.support:appcompat-v7:25.1.0'
+
+in Gardle Scripts =>build.gardle(module:app)
