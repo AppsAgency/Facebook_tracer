@@ -1,0 +1,15 @@
+   
+   @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main2);
+        
+        TextView textView=(TextView)findViewById(R.id.textView);
+        this code to receive from another activity
+        Bundle b=getIntent().getExtras();
+        textView.setText(b.getString("id"));
+         String id=textView.getText().toString();
+}
+how i cane use id here
+// Profile picture link
+     public  static String FACEBOOK_pro_pic = "https://www.facebook.com/search/" + id + "/photos-by/";
